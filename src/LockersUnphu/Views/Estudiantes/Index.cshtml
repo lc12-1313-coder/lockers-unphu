@@ -1,0 +1,36 @@
+@model Estudiante
+@{
+    ViewData["Title"] = "Estudiantes";
+    var matricula = (string?)ViewData["Matricula"];
+}
+<header class="encabezado encabezado-accion">
+    <div>
+        <h1>Estudiantes</h1>
+        <p class="secundario">Busca una cuenta por su matrícula.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="Nuevo">Registrar estudiante</a>
+</header>
+<section class="panel panel-estrecho" aria-labelledby="titulo-busqueda">
+    <h2 id="titulo-busqueda">Buscar estudiante</h2>
+    <form asp-action="Index" method="get" class="busqueda">
+        <div>
+            <label for="matricula">Matrícula</label>
+            <input name="matricula" id="matricula" class="form-control" value="@matricula" maxlength="24" autocomplete="off" required />
+        </div>
+        <button class="btn btn-primary" type="submit">Buscar</button>
+    </form>
+    @if (Model is { } estudiante)
+    {
+        <div class="resultado">
+            <strong>@estudiante.Nombre</strong>
+            <span class="dato">@estudiante.Matricula</span>
+        </div>
+    }
+    else if (!string.IsNullOrEmpty(matricula))
+    {
+        <div class="resultado">
+            <p>No se encontró la matrícula <strong class="dato">@matricula</strong>.</p>
+            <a asp-action="Nuevo" asp-route-matricula="@matricula">Registrar con esta matrícula</a>
+        </div>
+    }
+</section>

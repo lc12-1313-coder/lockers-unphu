@@ -1,0 +1,28 @@
+@model EstudianteForm
+@{
+    ViewData["Title"] = "Registrar estudiante";
+}
+<header class="encabezado">
+    <h1>Registrar estudiante</h1>
+    <p class="secundario">La matrícula será el usuario de la cuenta.</p>
+</header>
+<form asp-action="Nuevo" method="post" class="panel panel-estrecho formulario">
+    <div asp-validation-summary="ModelOnly" class="validation" role="alert"></div>
+    <div>
+        <label asp-for="Matricula"></label>
+        <input asp-for="Matricula" class="form-control" maxlength="24" autocomplete="off" required />
+        <span asp-validation-for="Matricula" class="validation"></span>
+    </div>
+    <div>
+        <label asp-for="Nombre"></label>
+        <input asp-for="Nombre" class="form-control" maxlength="120" autocomplete="off" required />
+        <span asp-validation-for="Nombre" class="validation"></span>
+    </div>
+    <div>
+        <label asp-for="Clave"></label>
+        <input asp-for="Clave" class="form-control" autocomplete="new-password" minlength="12" maxlength="128" aria-describedby="reglas-clave" required />
+        <span asp-validation-for="Clave" class="validation"></span>
+        <partial name="_ReglasClave" />
+    </div>
+    <button class="btn btn-primary" type="submit">Crear cuenta de estudiante</button>
+</form>

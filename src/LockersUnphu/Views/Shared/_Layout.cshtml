@@ -21,6 +21,10 @@
                 <a asp-controller="Home" asp-action="Index" class="marca"><span>UNPHU</span> Biblioteca</a>
                 <nav class="nav-principal" aria-label="Navegación principal">
                     <a asp-controller="Home" asp-action="Index" aria-current="@(controlador == "Home" ? "page" : null)">Inicio</a>
+                    @if (User.IsInRole(Roles.PersonalBiblioteca) || User.IsInRole(Roles.Administrador))
+                    {
+                        <a asp-controller="Estudiantes" asp-action="Index" aria-current="@(controlador == "Estudiantes" ? "page" : null)">Estudiantes</a>
+                    }
                 </nav>
                 <div class="nav-cuenta">
                     <a asp-controller="Cuenta" asp-action="Clave" aria-current="@(controlador == "Cuenta" ? "page" : null)">Mi cuenta</a>

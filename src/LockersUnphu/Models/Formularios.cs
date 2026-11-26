@@ -29,3 +29,20 @@ public sealed class ClaveForm
     [DataType(DataType.Password), Display(Name = "Nueva contraseña")]
     public string Nueva { get; set; } = "";
 }
+
+public sealed class EstudianteForm
+{
+    [Required(ErrorMessage = "Escribe la matrícula.")]
+    [RegularExpression(@"[A-Za-z0-9-]{1,24}", ErrorMessage = "Usa hasta 24 letras, números o guiones.")]
+    [Display(Name = "Matrícula")]
+    public string Matricula { get; set; } = "";
+
+    [Required(ErrorMessage = "Escribe el nombre.")]
+    [StringLength(120, ErrorMessage = "Usa hasta 120 caracteres.")]
+    public string Nombre { get; set; } = "";
+
+    [Required(ErrorMessage = "Escribe una contraseña inicial.")]
+    [StringLength(128, MinimumLength = 12, ErrorMessage = "Usa entre 12 y 128 caracteres.")]
+    [DataType(DataType.Password), Display(Name = "Contraseña inicial")]
+    public string Clave { get; set; } = "";
+}
