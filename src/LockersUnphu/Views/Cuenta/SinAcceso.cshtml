@@ -1,6 +1,8 @@
 @{
     ViewData["Title"] = "Acceso restringido";
 }
-<h1>Acceso restringido</h1>
-<p>Tu cuenta no tiene permiso para abrir esta página.</p>
-<a asp-controller="Home" asp-action="Index">Volver al inicio</a>
+<header class="encabezado">
+    <h1>Acceso restringido</h1>
+    <p class="secundario">Tu cuenta no tiene permiso para abrir esta página.</p>
+</header>
+<a class="btn btn-primary" asp-controller="Home" asp-action="Inicio">Volver al inicio</a>
