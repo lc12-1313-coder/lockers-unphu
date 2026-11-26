@@ -9,3 +9,9 @@ h1 { font-weight: 650; letter-spacing: -.035em; }
 a { color: #245c3a; }
 a:focus-visible { outline: 3px solid #487d53; outline-offset: 3px; }
 main p { max-width: 45rem; }
+
+.formulario-cuenta { display: grid; gap: 1rem; max-width: 28rem; margin-top: 1.5rem; }
+.formulario-cuenta label { display: block; margin-bottom: .35rem; }
+.formulario-cuenta .btn { min-height: 2.75rem; justify-self: start; }
+.form-control { min-height: 2.75rem; }
+.validation-summary-valid { display: none; }
