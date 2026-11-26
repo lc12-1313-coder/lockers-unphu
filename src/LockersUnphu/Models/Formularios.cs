@@ -29,4 +29,3 @@ public sealed class ClaveForm
     [DataType(DataType.Password), Display(Name = "Nueva contraseña")]
     public string Nueva { get; set; } = "";
 }
-

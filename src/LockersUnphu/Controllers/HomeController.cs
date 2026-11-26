@@ -13,4 +13,3 @@ public sealed class HomeController : Controller
     public IActionResult Error() =>
         View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
 }
-

@@ -70,4 +70,3 @@ public sealed class CuentaController(SignInManager<ApplicationUser> sesion, User
         return RedirectToAction(nameof(Clave));
     }
 }
-
