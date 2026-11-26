@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] · Lockers UNPHU</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <a class="visually-hidden-focusable" href="#contenido">Ir al contenido</a>
+    <header class="cabecera">
+        <div class="container py-3">
+            <a asp-controller="Home" asp-action="Index">UNPHU · Biblioteca</a>
+        </div>
+    </header>
+    <main id="contenido" class="container py-5">
+        @RenderBody()
+    </main>
+</body>
+</html>
