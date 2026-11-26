@@ -1,28 +1,56 @@
+@{
+    var conectado = User.Identity?.IsAuthenticated == true;
+    var controlador = ViewContext.RouteData.Values["controller"] as string;
+}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#173b2b" />
     <title>@ViewData["Title"] · Lockers UNPHU</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
-<body>
-    <a class="visually-hidden-focusable" href="#contenido">Ir al contenido</a>
-    <header class="cabecera">
-        <div class="container py-3 d-flex flex-wrap align-items-center gap-3">
-            <a asp-controller="Home" asp-action="Index">UNPHU · Biblioteca</a>
-            @if (User.Identity?.IsAuthenticated == true)
+<body class="@(conectado ? "app" : "publica")">
+    <a class="skip" href="#contenido">Ir al contenido</a>
+    @if (conectado)
+    {
+        <header class="barra">
+            <div class="contenedor barra-interior">
+                <a asp-controller="Home" asp-action="Index" class="marca"><span>UNPHU</span> Biblioteca</a>
+                <nav class="nav-principal" aria-label="Navegación principal">
+                    <a asp-controller="Home" asp-action="Index" aria-current="@(controlador == "Home" ? "page" : null)">Inicio</a>
+                    @if (User.IsInRole(Roles.PersonalBiblioteca) || User.IsInRole(Roles.Administrador))
+                    {
+                        <a asp-controller="Estudiantes" asp-action="Index" aria-current="@(controlador == "Estudiantes" ? "page" : null)">Estudiantes</a>
+                    }
+                    <a asp-controller="Inventario" asp-action="Index" aria-current="@(controlador == "Inventario" ? "page" : null)">Lockers</a>
+                </nav>
+                <div class="nav-cuenta">
+                    <a asp-controller="Cuenta" asp-action="Clave" aria-current="@(controlador == "Cuenta" ? "page" : null)">Mi cuenta</a>
+                    <form asp-controller="Cuenta" asp-action="Salir" method="post">
+                        <button type="submit">Salir</button>
+                    </form>
+                </div>
+            </div>
+        </header>
+        <main id="contenido" class="contenedor contenido">
+            @if (TempData["Confirmacion"] is string confirmacion)
             {
-                <a asp-controller="Cuenta" asp-action="Clave">Mi cuenta</a>
-                <form asp-controller="Cuenta" asp-action="Salir" method="post">
-                    <button type="submit" class="btn btn-outline-light">Salir</button>
-                </form>
+                <p class="aviso aviso-ok" role="status">@confirmacion</p>
             }
-        </div>
-    </header>
-    <main id="contenido" class="container py-5">
-        @RenderBody()
-    </main>
+            @if (TempData["Error"] is string error)
+            {
+                <p class="aviso aviso-error" role="alert">@error</p>
+            }
+            @RenderBody()
+        </main>
+        <footer class="pie"><div class="contenedor">Biblioteca UNPHU <span>·</span> Santo Domingo</div></footer>
+    }
+    else
+    {
+        <main id="contenido">@RenderBody()</main>
+    }
 </body>
 </html>

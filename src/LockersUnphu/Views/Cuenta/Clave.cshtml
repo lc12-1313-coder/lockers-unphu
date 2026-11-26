@@ -2,23 +2,25 @@
 @{
     ViewData["Title"] = "Mi cuenta";
 }
-<h1>Cambiar contraseña</h1>
-@if (TempData["Confirmacion"] is string mensaje)
-{
-    <p role="status" class="alert alert-success">@mensaje</p>
-}
-<form asp-action="Clave" method="post" class="formulario-cuenta">
-    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-    <div>
-        <label asp-for="Actual"></label>
-        <input asp-for="Actual" class="form-control" autocomplete="current-password" maxlength="128" required />
-        <span asp-validation-for="Actual" class="text-danger"></span>
-    </div>
-    <div>
-        <label asp-for="Nueva"></label>
-        <input asp-for="Nueva" class="form-control" autocomplete="new-password" minlength="12" maxlength="128" aria-describedby="reglas-clave" required />
-        <span asp-validation-for="Nueva" class="text-danger"></span>
-        <p id="reglas-clave">Usa al menos 12 caracteres, con una mayúscula, una minúscula y un número.</p>
-    </div>
-    <button class="btn btn-success" type="submit">Guardar contraseña</button>
-</form>
+<header class="encabezado">
+    <h1>Mi cuenta</h1>
+    <p class="secundario">@User.Identity?.Name</p>
+</header>
+<section class="panel panel-estrecho" aria-labelledby="titulo-clave">
+    <h2 id="titulo-clave">Cambiar contraseña</h2>
+    <form asp-action="Clave" method="post" class="formulario">
+        <div asp-validation-summary="ModelOnly" class="validation" role="alert"></div>
+        <div>
+            <label asp-for="Actual"></label>
+            <input asp-for="Actual" class="form-control" autocomplete="current-password" maxlength="128" required />
+            <span asp-validation-for="Actual" class="validation"></span>
+        </div>
+        <div>
+            <label asp-for="Nueva"></label>
+            <input asp-for="Nueva" class="form-control" autocomplete="new-password" minlength="12" maxlength="128" aria-describedby="reglas-clave" required />
+            <span asp-validation-for="Nueva" class="validation"></span>
+            <partial name="_ReglasClave" />
+        </div>
+        <button type="submit" class="btn btn-primary">Guardar contraseña</button>
+    </form>
+</section>

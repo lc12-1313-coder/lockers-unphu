@@ -2,20 +2,41 @@
 @{
     ViewData["Title"] = "Iniciar sesión";
 }
-<h1>Iniciar sesión</h1>
-<p>Usa tu cuenta del sistema de lockers.</p>
-<form asp-action="Ingresar" method="post" class="formulario-cuenta">
-    <input asp-for="ReturnUrl" type="hidden" />
-    <div asp-validation-summary="ModelOnly" class="text-danger" role="alert"></div>
-    <div>
-        <label asp-for="Usuario"></label>
-        <input asp-for="Usuario" class="form-control" autocomplete="username" maxlength="64" required />
-        <span asp-validation-for="Usuario" class="text-danger"></span>
+<div class="acceso">
+    <div class="acceso-marca">
+        <div class="marca"><span>UNPHU</span> Biblioteca</div>
+        <div class="acceso-titulo">
+            <p>Sistema de gestión</p>
+            <h1>Lockers de<br /> biblioteca</h1>
+        </div>
+        <div class="casilleros-ilustracion" aria-hidden="true">
+            @for (var i = 0; i < 12; i++)
+            {
+                <div class="puerta"><span></span></div>
+            }
+        </div>
+        <p class="acceso-campus">Campus Santo Domingo</p>
     </div>
-    <div>
-        <label asp-for="Clave"></label>
-        <input asp-for="Clave" class="form-control" autocomplete="current-password" maxlength="128" required />
-        <span asp-validation-for="Clave" class="text-danger"></span>
+    <div class="acceso-contenido">
+        <section class="acceso-form" aria-labelledby="titulo-acceso">
+            <h2 id="titulo-acceso">Iniciar sesión</h2>
+            <p class="secundario">Usa tu cuenta del sistema de lockers. Si eres estudiante, ingresa con tu matrícula.</p>
+            <form asp-action="Ingresar" method="post" class="formulario">
+                <input asp-for="ReturnUrl" type="hidden" />
+                <div asp-validation-summary="ModelOnly" class="validation" role="alert"></div>
+                <div>
+                    <label asp-for="Usuario"></label>
+                    <input asp-for="Usuario" class="form-control" autocomplete="username" autocapitalize="none" spellcheck="false" maxlength="64" required />
+                    <span asp-validation-for="Usuario" class="validation"></span>
+                </div>
+                <div>
+                    <label asp-for="Clave"></label>
+                    <input asp-for="Clave" class="form-control" autocomplete="current-password" maxlength="128" required />
+                    <span asp-validation-for="Clave" class="validation"></span>
+                </div>
+                <button class="btn btn-primary" type="submit">Ingresar</button>
+            </form>
+            <p class="ayuda">Para solicitar una cuenta, acércate al mostrador de la biblioteca.</p>
+        </section>
     </div>
-    <button class="btn btn-success" type="submit">Ingresar</button>
-</form>
+</div>
