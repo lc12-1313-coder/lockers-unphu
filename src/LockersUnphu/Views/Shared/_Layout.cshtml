@@ -10,8 +10,15 @@
 <body>
     <a class="visually-hidden-focusable" href="#contenido">Ir al contenido</a>
     <header class="cabecera">
-        <div class="container py-3">
+        <div class="container py-3 d-flex flex-wrap align-items-center gap-3">
             <a asp-controller="Home" asp-action="Index">UNPHU · Biblioteca</a>
+            @if (User.Identity?.IsAuthenticated == true)
+            {
+                <a asp-controller="Cuenta" asp-action="Clave">Mi cuenta</a>
+                <form asp-controller="Cuenta" asp-action="Salir" method="post">
+                    <button type="submit" class="btn btn-outline-light">Salir</button>
+                </form>
+            }
         </div>
     </header>
     <main id="contenido" class="container py-5">

@@ -1,6 +1,17 @@
+@using LockersUnphu.Domain
 @{
     ViewData["Title"] = "Inicio";
 }
 <h1>Lockers de biblioteca</h1>
-<p class="lead mt-3">Sistema de gestión de lockers de la Biblioteca UNPHU.</p>
-<p>Base del proyecto preparada para la incorporación de los módulos de la beta.</p>
+<p class="lead mt-3">Sesión iniciada como @User.Identity?.Name.</p>
+<p>Rol de la cuenta</p>
+<ul>
+@foreach (var rol in new[] { Roles.Estudiante, Roles.PersonalBiblioteca, Roles.Administrador })
+{
+    if (User.IsInRole(rol))
+    {
+        <li>@Roles.Nombre(rol)</li>
+    }
+}
+</ul>
+<p>El inventario y las operaciones de préstamos se incorporarán en los siguientes módulos.</p>
