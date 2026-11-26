@@ -1,0 +1,74 @@
+@model InventarioPantalla
+@{
+    ViewData["Title"] = "Lockers";
+    var admin = User.IsInRole(Roles.Administrador);
+    var estados = Enum.GetValues<EstadoLocker>();
+    var conteos = Model.Lockers.GroupBy(l => l.Estado).ToDictionary(g => g.Key, g => g.Count());
+}
+<header class="encabezado">
+    <h1>Lockers</h1>
+    <p class="secundario">Consulta la disponibilidad de los lockers de la biblioteca.</p>
+</header>
+
+<dl class="resumen" aria-label="Disponibilidad del inventario">
+    @foreach (var estado in estados)
+    {
+        <div class="resumen-item">
+            <dt><span class="estado estado-@estado">@Formato.Estado(estado)</span></dt>
+            <dd>@conteos.GetValueOrDefault(estado)</dd>
+        </div>
+    }
+</dl>
+
+@if (Model.MiPrestamo is { } prestamo)
+{
+    <section class="panel mi-prestamo" aria-labelledby="titulo-mi-locker">
+        <h2 id="titulo-mi-locker">Mi préstamo · Locker @prestamo.Locker.ToString("00")</h2>
+        <p class="mb-0">Llave recibida el <time datetime="@prestamo.Inicio.ToString("O")">@Formato.Fecha(prestamo.Inicio)</time>. Entrégala en el mostrador al terminar.</p>
+    </section>
+}
+
+<section class="seccion" aria-labelledby="titulo-inventario">
+    <div class="titulo-seccion">
+        <h2 id="titulo-inventario">Inventario</h2>
+        <span class="dato">@Model.Lockers.Count @(Model.Lockers.Count == 1 ? "locker" : "lockers")</span>
+    </div>
+
+    @if (admin)
+    {
+        <form asp-action="Nuevo" method="post" class="busqueda alta-locker">
+            <div>
+                <label for="numero">Número de locker</label>
+                <input class="form-control" type="number" name="numero" id="numero" min="1" max="999" required />
+            </div>
+            <button type="submit" class="btn btn-primary">Agregar locker</button>
+        </form>
+    }
+
+    @if (Model.Lockers.Count == 0)
+    {
+        <p class="vacio">Todavía no hay lockers registrados.</p>
+    }
+    else
+    {
+        <ul class="inventario">
+            @foreach (var locker in Model.Lockers)
+            {
+                <li class="casillero">
+                    <div class="casillero-numero"><span>Locker</span> <strong class="dato">@locker.Numero.ToString("00")</strong></div>
+                    <span class="estado estado-@locker.Estado">@Formato.Estado(locker.Estado)</span>
+                    @if (admin && locker.Estado != EstadoLocker.Ocupado)
+                    {
+                        var habilitar = locker.Estado == EstadoLocker.FueraDeServicio;
+                        var accion = habilitar ? "Habilitar" : "Poner fuera de servicio";
+                        <form asp-action="Servicio" asp-route-id="@locker.Id" method="post">
+                            <input type="hidden" name="version" value="@locker.Version" />
+                            <input type="hidden" name="habilitar" value="@(habilitar ? "true" : "false")" />
+                            <button class="btn-enlace" type="submit" aria-label="@accion el locker @locker.Numero.ToString("00")">@accion</button>
+                        </form>
+                    }
+                </li>
+            }
+        </ul>
+    }
+</section>
