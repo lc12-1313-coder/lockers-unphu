@@ -1,0 +1,11 @@
+:root {
+    --bs-body-color: #172820;
+    --bs-body-bg: #f6f7f2;
+}
+body { font-family: system-ui, sans-serif; }
+h1 { font-weight: 650; letter-spacing: -.035em; }
+.cabecera { background-color: #173b2b; }
+.cabecera a { color: #f3f7ef; text-decoration: none; font-weight: 600; }
+a { color: #245c3a; }
+a:focus-visible { outline: 3px solid #487d53; outline-offset: 3px; }
+main p { max-width: 45rem; }
