@@ -24,6 +24,10 @@
         <div class="resultado">
             <strong>@estudiante.Nombre</strong>
             <span class="dato">@estudiante.Matricula</span>
+            @if (User.IsInRole(Roles.PersonalBiblioteca))
+            {
+                <a class="btn btn-primary" asp-controller="Mostrador" asp-action="Index" asp-route-matricula="@estudiante.Matricula">Entregar una llave</a>
+            }
         </div>
     }
     else if (!string.IsNullOrEmpty(matricula))

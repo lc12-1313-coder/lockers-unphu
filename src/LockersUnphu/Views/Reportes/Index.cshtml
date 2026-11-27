@@ -1,0 +1,58 @@
+@model ReportePantalla
+@{
+    ViewData["Title"] = "Reportes";
+}
+<header class="encabezado">
+    <h1>Reportes</h1>
+    <p class="secundario">Actividad de los lockers de la biblioteca.</p>
+</header>
+
+<dl class="resumen resumen-reportes">
+    <div class="resumen-item">
+        <dt>Asignaciones registradas</dt>
+        <dd>@Model.Total</dd>
+    </div>
+    <div class="resumen-item">
+        <dt>Duración promedio de las devueltas</dt>
+        <dd>@(Model.PromedioSegundos is double segundos ? Formato.Duracion(TimeSpan.FromSeconds(segundos)) : "Sin devoluciones")</dd>
+    </div>
+</dl>
+
+<section class="seccion" aria-labelledby="titulo-historial">
+    <div class="titulo-seccion">
+        <h2 id="titulo-historial">Asignaciones recientes</h2>
+        <span class="dato">@Model.Recientes.Count de @Model.Total</span>
+    </div>
+    @if (Model.Recientes.Count == 0)
+    {
+        <p class="vacio">Aún no se han registrado asignaciones.</p>
+    }
+    else
+    {
+        <div class="tabla-marco" tabindex="0" role="region" aria-label="Historial de asignaciones">
+            <table class="table">
+                <thead><tr><th scope="col">Locker</th><th scope="col">Estudiante</th><th scope="col">Entrega</th><th scope="col">Devolución</th><th scope="col">Duración</th></tr></thead>
+                <tbody>
+                    @foreach (var prestamo in Model.Recientes)
+                    {
+                        <tr>
+                            <th scope="row" class="dato">@prestamo.Locker.ToString("00")</th>
+                            <td>@prestamo.Estudiante <small class="dato">@prestamo.Matricula</small></td>
+                            <td><time datetime="@prestamo.Inicio.ToString("O")">@Formato.Fecha(prestamo.Inicio)</time></td>
+                            @if (prestamo.Fin is DateTimeOffset fin)
+                            {
+                                <td><time datetime="@fin.ToString("O")">@Formato.Fecha(fin)</time></td>
+                                <td>@Formato.Duracion(fin - prestamo.Inicio)</td>
+                            }
+                            else
+                            {
+                                <td>Pendiente</td>
+                                <td>—</td>
+                            }
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

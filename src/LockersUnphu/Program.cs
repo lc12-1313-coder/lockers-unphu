@@ -37,6 +37,7 @@ if (builder.Configuration["DataProtection:KeysDirectory"] is { Length: > 0 } rut
 
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddScoped<Cuentas>();
+builder.Services.AddScoped<Prestamos>();
 builder.Services.AddScoped<DatosIniciales>();
 
 var app = builder.Build();
