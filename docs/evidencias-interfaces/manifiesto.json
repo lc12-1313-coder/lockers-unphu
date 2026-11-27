@@ -1,0 +1,37 @@
+{
+  "RevisionAplicacion": "38bfa01a49246b868c9c9e9696fd9fe9426c45e0",
+  "BaseAislada": "LockersCapturas65_41752f13",
+  "Formato": "JPEG original del navegador",
+  "Archivos": [
+    {
+      "Archivo": "01-estudiante-disponibilidad.jpg",
+      "Bytes": 55174,
+      "SHA256": "473834AF6CFEA496915EF02538F73DE58AD247E36DD249BB60ED8582837EBF5F"
+    },
+    {
+      "Archivo": "02-estudiante-prestamo-activo.jpg",
+      "Bytes": 67730,
+      "SHA256": "D81411A5B0B9AB90B9C77128A267729C317D1015A5E8DE107E0056CEF9CE55C8"
+    },
+    {
+      "Archivo": "03-personal-preparar-entrega.jpg",
+      "Bytes": 57362,
+      "SHA256": "086AA6B7349E110734A61947555F295AB076D33A92760C6FBBFC2576E532480F"
+    },
+    {
+      "Archivo": "04-personal-devolucion-pendiente.jpg",
+      "Bytes": 68040,
+      "SHA256": "B704B39517465653A81A4C71B1F4230311EBAFA1EFD529CF0F9F9F9C77B87E96"
+    },
+    {
+      "Archivo": "05-administrador-inventario.jpg",
+      "Bytes": 78537,
+      "SHA256": "AE9D2CE6C70519BBEED62B40B233EFBAFC4BD9091E0BACAAE01E6D8D757BEF6A"
+    },
+    {
+      "Archivo": "06-administrador-reportes.jpg",
+      "Bytes": 53117,
+      "SHA256": "89A6003E547246A693A1AF2837B7A2C9AA39D3A95ED73E4AB4C10DF5FA5E821B"
+    }
+  ]
+}
