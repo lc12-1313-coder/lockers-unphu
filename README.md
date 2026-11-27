@@ -6,7 +6,7 @@ Proyecto académico de gestión de lockers para la Biblioteca UNPHU, Santo Domin
 
 Esta incorporación agrega SQL Server, las entidades y su migración, ASP.NET Core Identity, los tres roles y la inicialización reproducible de cuentas y datos ficticios. Se puede iniciar sesión, consultar el rol propio, cambiar contraseña y cerrar sesión desde una interfaz básica.
 
-Ya están disponibles el registro y la búsqueda de estudiantes, la consulta de lockers, el préstamo propio y el mantenimiento administrativo del inventario. Los módulos de préstamos y reportes se incorporarán en las siguientes ramas. El equipo parte de una beta local previa. Este repositorio organiza su incorporación y revisión por módulos, junto con las mejoras y verificaciones pendientes. Cada pull request identifica la procedencia y las comprobaciones realizadas.
+Ya están disponibles el registro y la búsqueda de estudiantes, la consulta de lockers, el préstamo propio y el mantenimiento administrativo del inventario. El personal ya puede asignar y devolver lockers desde Mostrador. Personal y administrador pueden consultar Reportes. La interfaz de administración de cuentas del equipo se incorporará en una rama posterior. El equipo parte de una beta local previa. Este repositorio organiza su incorporación y revisión por módulos, junto con las mejoras y verificaciones pendientes. Cada pull request identifica la procedencia y las comprobaciones realizadas.
 
 ## Requisitos
 
@@ -87,7 +87,18 @@ $env:LOCKERS_TEST_SQL = 'Server=(localdb)\MSSQLLocalDB;Integrated Security=True;
 dotnet test --logger 'trx;LogFileName=base-datos.trx'
 ```
 
-Sin esa variable la prueba SQL se omite. El repositorio contiene tres pruebas automatizadas, una HTTP y dos integrales con múltiples escenarios. Los resultados de los módulos posteriores se registrarán cuando se incorporen. Las comprobaciones están registradas en [verificación de base de datos](docs/verificacion-base-datos.md) y [verificación de estudiantes e inventario](docs/verificacion-estudiantes-inventario.md).
+Sin esa variable la prueba SQL se omite. El repositorio contiene cuatro pruebas automatizadas, una HTTP y tres integrales con múltiples escenarios. Los resultados de los módulos posteriores se registrarán cuando se incorporen. Las comprobaciones están registradas en [verificación de base de datos](docs/verificacion-base-datos.md) y [verificación de estudiantes e inventario](docs/verificacion-estudiantes-inventario.md) y [verificación de préstamos y reportes](docs/verificacion-prestamos-reportes.md).
+
+## Demostración del flujo principal
+
+1. Ingresar como biblioteca.demo y abrir Mostrador.
+2. Buscar DEMO-1002 o registrar un estudiante nuevo.
+3. Seleccionar un locker disponible y registrar la entrega de la llave.
+4. Comprobar la asignación activa y el estado ocupado del locker.
+5. Ingresar como el estudiante para consultar su propio préstamo.
+6. Volver al personal y registrar la devolución.
+7. Comprobar que el locker está disponible y consultar las fechas y duración en Reportes.
+8. Reiniciar la aplicación con la misma conexión y comprobar el historial.
 
 ## Organización y contribuciones
 
