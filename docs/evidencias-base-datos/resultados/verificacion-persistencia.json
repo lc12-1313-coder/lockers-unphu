@@ -1,0 +1,10 @@
+{
+  "RevisionAplicacion": "419b03a4c08d210ec8d0e72722fa8a97018efc75",
+  "BaseDatos": "LockersInterfazDemo_c8b34ec0",
+  "AplicacionReiniciada": true,
+  "FilasFicticias": 1,
+  "ResultadoAntesSHA256": "A8EA8CDCF74844D62D2B46F6C2604CB2EBC843C840B0925B3F38EB510D8E0026",
+  "ResultadoDespuesSHA256": "A8EA8CDCF74844D62D2B46F6C2604CB2EBC843C840B0925B3F38EB510D8E0026",
+  "Coinciden": true,
+  "ComprobadoUTC": "2026-11-27T01:16:42.4571083+00:00"
+}

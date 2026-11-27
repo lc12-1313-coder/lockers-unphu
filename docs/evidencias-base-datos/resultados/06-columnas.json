@@ -1,0 +1,145 @@
+[
+  {
+    "Tabla": "Asignaciones",
+    "Posicion": 1,
+    "Columna": "Id",
+    "TipoSQL": "int",
+    "Longitud": 4,
+    "Precision": 10,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": true
+  },
+  {
+    "Tabla": "Asignaciones",
+    "Posicion": 2,
+    "Columna": "EstudianteId",
+    "TipoSQL": "int",
+    "Longitud": 4,
+    "Precision": 10,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": false
+  },
+  {
+    "Tabla": "Asignaciones",
+    "Posicion": 3,
+    "Columna": "LockerId",
+    "TipoSQL": "int",
+    "Longitud": 4,
+    "Precision": 10,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": false
+  },
+  {
+    "Tabla": "Asignaciones",
+    "Posicion": 4,
+    "Columna": "FechaHoraInicio",
+    "TipoSQL": "datetimeoffset",
+    "Longitud": 10,
+    "Precision": 34,
+    "Escala": 7,
+    "AceptaNulos": false,
+    "EsIdentidad": false
+  },
+  {
+    "Tabla": "Asignaciones",
+    "Posicion": 5,
+    "Columna": "FechaHoraFin",
+    "TipoSQL": "datetimeoffset",
+    "Longitud": 10,
+    "Precision": 34,
+    "Escala": 7,
+    "AceptaNulos": true,
+    "EsIdentidad": false
+  },
+  {
+    "Tabla": "Estudiantes",
+    "Posicion": 1,
+    "Columna": "Id",
+    "TipoSQL": "int",
+    "Longitud": 4,
+    "Precision": 10,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": true
+  },
+  {
+    "Tabla": "Estudiantes",
+    "Posicion": 2,
+    "Columna": "Matricula",
+    "TipoSQL": "nvarchar",
+    "Longitud": 24,
+    "Precision": 0,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": false
+  },
+  {
+    "Tabla": "Estudiantes",
+    "Posicion": 3,
+    "Columna": "Nombre",
+    "TipoSQL": "nvarchar",
+    "Longitud": 120,
+    "Precision": 0,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": false
+  },
+  {
+    "Tabla": "Estudiantes",
+    "Posicion": 4,
+    "Columna": "ApplicationUserId",
+    "TipoSQL": "nvarchar",
+    "Longitud": 450,
+    "Precision": 0,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": false
+  },
+  {
+    "Tabla": "Lockers",
+    "Posicion": 1,
+    "Columna": "Id",
+    "TipoSQL": "int",
+    "Longitud": 4,
+    "Precision": 10,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": true
+  },
+  {
+    "Tabla": "Lockers",
+    "Posicion": 2,
+    "Columna": "Numero",
+    "TipoSQL": "int",
+    "Longitud": 4,
+    "Precision": 10,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": false
+  },
+  {
+    "Tabla": "Lockers",
+    "Posicion": 3,
+    "Columna": "Estado",
+    "TipoSQL": "int",
+    "Longitud": 4,
+    "Precision": 10,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": false
+  },
+  {
+    "Tabla": "Lockers",
+    "Posicion": 4,
+    "Columna": "Version",
+    "TipoSQL": "timestamp",
+    "Longitud": 8,
+    "Precision": 0,
+    "Escala": 0,
+    "AceptaNulos": false,
+    "EsIdentidad": false
+  }
+]

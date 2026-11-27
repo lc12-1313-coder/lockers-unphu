@@ -1,0 +1,12 @@
+[
+  {
+    "AsignacionId": 1,
+    "EstudianteFicticio": "Estudiante Demo Uno",
+    "MatriculaFicticia": "DEMO-1001",
+    "NumeroLocker": 1,
+    "EstadoLocker": "Disponible",
+    "FechaHoraInicio": "2026-11-26T00:36:28.4671707Z",
+    "FechaHoraFin": "2026-11-26T01:21:28.4671707Z",
+    "DuracionSegundos": 2700
+  }
+]
