@@ -1,0 +1,53 @@
+{
+  "baseDatos": "LockersPF002_0f1af3bd",
+  "codigoProbado": "544d630caf0f7dbba2e8b7f20b8ac0ab931747ef",
+  "prueba": "PF-002",
+  "resultado": "Aprobada",
+  "archivos": [
+    {
+      "bytes": 593,
+      "sha256": "b43fa795d60f95e93673e2a595f54de3153eeb5f65412df6e7078d2a429279ad",
+      "archivo": "01-inicial.json"
+    },
+    {
+      "bytes": 753,
+      "sha256": "e8eed07ec848871ccaa8a72d0b8a408c09b2cbe1c4c43e15f754cd182754b456",
+      "archivo": "02-antes-intento.json"
+    },
+    {
+      "bytes": 753,
+      "sha256": "271d4dfff5210ddf5bc749029141ed29773dea35ab185166f8dcfb3409b9fbfe",
+      "archivo": "03-despues-intento.json"
+    },
+    {
+      "bytes": 862,
+      "sha256": "ef09ede431170266d22b684f02f06794369b4e5b5c7379aa2fb5b8b957a438bb",
+      "archivo": "consulta-estado.sql"
+    },
+    {
+      "bytes": 68009,
+      "sha256": "5390454681c122edc13319eeec0c6c165b33050d7c6c23d8e7e19bb3c3bb1969",
+      "archivo": "PF-002-A-asignacion-original.jpg"
+    },
+    {
+      "bytes": 60906,
+      "sha256": "6247ebbfba4fb92199894a3d33c5bd97b700e0f0ecdd8d5c6a5e7d6defe026d1",
+      "archivo": "PF-002-B-formulario-desactualizado.jpg"
+    },
+    {
+      "bytes": 57431,
+      "sha256": "3d25385a209fb0525b86e903223ff99e3f8184ac91b4b74bfe01645cadcb52e9",
+      "archivo": "PF-002-C-inventario-posterior.jpg"
+    },
+    {
+      "bytes": 73119,
+      "sha256": "a227917a7e89c98e830f473bcb00c25c17c1966788c6a93d7cee21c7da46a0a8",
+      "archivo": "PF-002-rechazo-locker-ocupado.jpg"
+    },
+    {
+      "bytes": 6070,
+      "sha256": "220531fe3dbaa68f663236c8cdb38fe04606c76963fb3715d652e38362e14861",
+      "archivo": "README.md"
+    }
+  ]
+}
