@@ -30,6 +30,10 @@
                     {
                         <a asp-controller="Mostrador" asp-action="Index" aria-current="@(controlador == "Mostrador" ? "page" : null)">Mostrador</a>
                     }
+                    @if (User.IsInRole(Roles.PersonalBiblioteca) || User.IsInRole(Roles.Administrador))
+                    {
+                        <a asp-controller="Reportes" asp-action="Index" aria-current="@(controlador == "Reportes" ? "page" : null)">Reportes</a>
+                    }
                 </nav>
                 <div class="nav-cuenta">
                     <a asp-controller="Cuenta" asp-action="Clave" aria-current="@(controlador == "Cuenta" ? "page" : null)">Mi cuenta</a>
