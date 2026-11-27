@@ -26,6 +26,10 @@
                         <a asp-controller="Estudiantes" asp-action="Index" aria-current="@(controlador == "Estudiantes" ? "page" : null)">Estudiantes</a>
                     }
                     <a asp-controller="Inventario" asp-action="Index" aria-current="@(controlador == "Inventario" ? "page" : null)">Lockers</a>
+                    @if (User.IsInRole(Roles.PersonalBiblioteca))
+                    {
+                        <a asp-controller="Mostrador" asp-action="Index" aria-current="@(controlador == "Mostrador" ? "page" : null)">Mostrador</a>
+                    }
                 </nav>
                 <div class="nav-cuenta">
                     <a asp-controller="Cuenta" asp-action="Clave" aria-current="@(controlador == "Cuenta" ? "page" : null)">Mi cuenta</a>

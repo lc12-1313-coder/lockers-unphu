@@ -1,0 +1,102 @@
+@model MostradorPantalla
+@{
+    ViewData["Title"] = "Mostrador";
+    var activo = Model.Estudiante is null ? null : Model.Activos.FirstOrDefault(a => a.Matricula == Model.Estudiante.Matricula);
+}
+<header class="encabezado encabezado-accion">
+    <div>
+        <h1>Mostrador</h1>
+        <p class="secundario">Registra la entrega y devolución de llaves.</p>
+    </div>
+    <a class="btn btn-outline-primary" asp-controller="Estudiantes" asp-action="Nuevo">Registrar estudiante</a>
+</header>
+
+<section class="panel bloque-busqueda" aria-labelledby="titulo-entrega">
+    <h2 id="titulo-entrega">Entregar una llave</h2>
+    <form asp-action="Index" method="get" class="busqueda">
+        <div>
+            <label for="buscar-matricula">Matrícula del estudiante</label>
+            <input class="form-control" id="buscar-matricula" name="matricula" value="@Model.Matricula" maxlength="24" autocomplete="off" required />
+        </div>
+        <button class="btn btn-primary" type="submit">Buscar estudiante</button>
+    </form>
+
+    @if (Model.Estudiante is { } estudiante)
+    {
+        <div class="resultado">
+            <div class="resultado-identidad">
+                <strong>@estudiante.Nombre</strong>
+                <span class="dato">@estudiante.Matricula</span>
+            </div>
+            @if (activo is not null)
+            {
+                <p class="mb-0">Tiene una asignación activa en el <strong>Locker @activo.Locker.ToString("00")</strong>.</p>
+            }
+            else if (Model.Disponibles.Count == 0)
+            {
+                <p class="mb-0">Por el momento no hay lockers disponibles.</p>
+            }
+            else
+            {
+                <form asp-action="Entregar" method="post" class="busqueda">
+                    <input type="hidden" name="matricula" value="@estudiante.Matricula" />
+                    <div>
+                        <label for="lockerId">Locker disponible</label>
+                        <select class="form-select" name="lockerId" id="lockerId" required>
+                            <option value="">Seleccionar locker</option>
+                            @foreach (var locker in Model.Disponibles)
+                            {
+                                <option value="@locker.Id">Locker @locker.Numero.ToString("00")</option>
+                            }
+                        </select>
+                    </div>
+                    <button class="btn btn-primary" type="submit">Registrar entrega</button>
+                </form>
+            }
+        </div>
+    }
+    else if (!string.IsNullOrEmpty(Model.Matricula))
+    {
+        <div class="resultado">
+            <p>No se encontró la matrícula <strong class="dato">@Model.Matricula</strong>.</p>
+            <a asp-controller="Estudiantes" asp-action="Nuevo" asp-route-matricula="@Model.Matricula">Registrar con esta matrícula</a>
+        </div>
+    }
+</section>
+
+<section class="seccion" aria-labelledby="titulo-activos">
+    <div class="titulo-seccion">
+        <h2 id="titulo-activos">Llaves pendientes de devolución</h2>
+        <span class="dato">@Model.Activos.Count @(Model.Activos.Count == 1 ? "activa" : "activas")</span>
+    </div>
+    @if (Model.Activos.Count == 0)
+    {
+        <p class="vacio">Todas las llaves prestadas han sido devueltas.</p>
+    }
+    else
+    {
+        <div class="tabla-marco" tabindex="0" role="region" aria-label="Asignaciones activas">
+            <table class="table">
+                <thead><tr><th scope="col">Locker</th><th scope="col">Estudiante</th><th scope="col">Entrega</th><th scope="col">Acción</th></tr></thead>
+                <tbody>
+                    @foreach (var prestamo in Model.Activos)
+                    {
+                        <tr>
+                            <th scope="row" class="dato">@prestamo.Locker.ToString("00")</th>
+                            <td>@prestamo.Estudiante <small class="dato">@prestamo.Matricula</small></td>
+                            <td><time datetime="@prestamo.Inicio.ToString("O")">@Formato.Fecha(prestamo.Inicio)</time></td>
+                            <td>
+                                <form asp-action="Devolver" method="post">
+                                    <input type="hidden" name="id" value="@prestamo.Id" />
+                                    <input type="hidden" name="matricula" value="@Model.Matricula" />
+                                    <button class="btn btn-outline-primary btn-sm" type="submit"
+                                            aria-label="Registrar devolución del locker @prestamo.Locker.ToString("00")">Devolver llave</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>
