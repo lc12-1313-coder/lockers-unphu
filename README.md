@@ -113,3 +113,6 @@ Crear una rama por tarea desde main y registrar cambios comprobables en commits 
 ## Evidencias de la base de datos
 
 La revisión de solo lectura, las consultas, los resultados SQL y las instrucciones de captura para la sección 6.4 están en [evidencias de base de datos](docs/evidencias-base-datos/README.md). El informe distingue la conexión predeterminada de la base de demostración utilizada en la comprobación.
+
+
+Las capturas reales por rol y sus pies de figura para la sección 6.5 están en [evidencias de interfaces](docs/evidencias-interfaces/README.md).
