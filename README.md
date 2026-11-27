@@ -4,9 +4,9 @@ Proyecto académico de gestión de lockers para la Biblioteca UNPHU, Santo Domin
 
 ## Estado actual
 
-Esta incorporación agrega SQL Server, las entidades y su migración, ASP.NET Core Identity, los tres roles y la inicialización reproducible de cuentas y datos ficticios. Se puede iniciar sesión, consultar el rol propio, cambiar contraseña y cerrar sesión desde una interfaz básica.
+La beta usa SQL Server, una migración de Entity Framework Core, ASP.NET Core Identity y tres roles. Permite iniciar sesión, consultar el rol propio, cambiar contraseña y cerrar sesión.
 
-Ya están disponibles el registro y la búsqueda de estudiantes, la consulta de lockers, el préstamo propio y el mantenimiento administrativo del inventario. El personal ya puede asignar y devolver lockers desde Mostrador. Personal y administrador pueden consultar Reportes. La interfaz de administración de cuentas del equipo se incorporará en una rama posterior. El equipo parte de una beta local previa. Este repositorio organiza su incorporación y revisión por módulos, junto con las mejoras y verificaciones pendientes. Cada pull request identifica la procedencia y las comprobaciones realizadas.
+Están disponibles el registro y la búsqueda de estudiantes, la consulta de lockers, el préstamo propio y el mantenimiento administrativo del inventario. El personal asigna y devuelve lockers desde Mostrador. Personal y administrador consultan Reportes. El administrador puede crear cuentas del equipo y cambiar los roles de otras cuentas desde Equipo; los cambios de rol invalidan las sesiones anteriores. El equipo parte de una beta local previa. Este repositorio registra su incorporación y revisión por módulos, junto con las mejoras y verificaciones pendientes. Cada pull request identifica la procedencia y las comprobaciones realizadas.
 
 ## Requisitos
 
@@ -17,6 +17,16 @@ Ya están disponibles el registro y la búsqueda de estudiantes, la consulta de 
 La solución usa ASP.NET Core MVC, vistas Razor y Bootstrap. Identity, EF Core SQL Server y la herramienta local dotnet-ef están fijados en 10.0.15.
 
 ## Preparar la aplicación
+
+Clonar el repositorio público y entrar en la carpeta:
+
+```powershell
+git clone https://github.com/lc12-1313-coder/lockers-unphu.git
+cd lockers-unphu
+dotnet --version
+```
+
+Comprobar que el SDK corresponde a 10.0.404 o a un parche posterior de la banda 10.0.4xx. Tener solo .NET 9 o el runtime sin SDK no es suficiente. SQL Server/LocalDB debe instalarse por separado; la aplicación no instala el motor. La verificación local se realizó con SQL Server 2019 Express LocalDB 15.0.4382.1; no se ha validado una versión mínima diferente.
 
 Desde la raíz:
 
@@ -65,6 +75,17 @@ Abrir [el acceso local](http://127.0.0.1:5170/cuenta/ingresar). El administrador
 
 El usuario autenticado puede cambiar su propia contraseña desde Mi cuenta. Si el proceso necesita un directorio explícito de claves de Data Protection, configurar `DataProtection__KeysDirectory` con una ruta persistente, protegida y externa al repositorio.
 
+### Ejecutar desde CMD
+
+Los ejemplos anteriores de variables `$env:` requieren PowerShell. Si la base ya fue migrada e inicializada y se utiliza CMD, la sintaxis es:
+
+```cmd
+set "ConnectionStrings__Lockers=Server=(localdb)\MSSQLLocalDB;Database=LockersUnphu;Integrated Security=True;TrustServerCertificate=True"
+dotnet run --project src/LockersUnphu
+```
+
+El SDK correcto debe estar en PATH. Si se instaló en otra carpeta, ejecutar su `dotnet.exe` mediante la ruta completa entre comillas. Para usar una base de demostración existente, configurar su nombre real; los nombres usados en las evidencias no se crean al clonar. Mantener la terminal abierta y esperar `Now listening on: http://127.0.0.1:5170` antes de abrir el navegador. Ctrl+C detiene la aplicación. Evitar dos instancias en el mismo puerto.
+
 ## Modelo y restricciones
 
 - `Estudiantes` guarda la matrícula única, el nombre y una referencia única a la cuenta Identity.
@@ -87,7 +108,15 @@ $env:LOCKERS_TEST_SQL = 'Server=(localdb)\MSSQLLocalDB;Integrated Security=True;
 dotnet test --logger 'trx;LogFileName=base-datos.trx'
 ```
 
-Sin esa variable la prueba SQL se omite. El repositorio contiene cuatro pruebas automatizadas, una HTTP y tres integrales con múltiples escenarios. Los resultados de los módulos posteriores se registrarán cuando se incorporen. Las comprobaciones están registradas en [verificación de base de datos](docs/verificacion-base-datos.md) y [verificación de estudiantes e inventario](docs/verificacion-estudiantes-inventario.md) y [verificación de préstamos y reportes](docs/verificacion-prestamos-reportes.md).
+Sin esa variable se omiten las cuatro pruebas SQL. El repositorio contiene cinco pruebas automatizadas, una HTTP y cuatro integrales con múltiples escenarios. La comprobación del viernes 27 terminó con cinco aprobadas, cero fallos y cero omisiones. Los resultados anteriores de cuatro pruebas corresponden a la revisión previa a incorporar Equipo. Las comprobaciones se registran en [base de datos](docs/verificacion-base-datos.md), [estudiantes e inventario](docs/verificacion-estudiantes-inventario.md), [préstamos y reportes](docs/verificacion-prestamos-reportes.md) y [verificación del viernes 27](docs/verificacion-viernes27.md).
+
+## Administración del equipo
+
+Solo Administrador accede a Equipo. Puede crear cuentas de Personal de biblioteca o Administrador y cambiar el rol de otras cuentas del equipo. Su propio rol debe cambiarlo otro administrador; esta pantalla no transforma estudiantes en personal. Después de un cambio de permisos, la cuenta afectada debe volver a iniciar sesión. Las cuentas y roles se guardan en las tablas existentes de Identity, sin otra migración.
+
+## Alcance de la validación
+
+La compilación, las pruebas SQL y la revisión visual se han ejecutado en la computadora de desarrollo. La instalación y ejecución en otra computadora y la evaluación formal de utilidad con usuarios continúan pendientes. No se ha creado el tag `v0.1.0-beta` en este repositorio; su publicación requiere una decisión explícita del equipo. Las evidencias PF-002 están en [la ficha funcional](docs/pruebas-funcionales/PF-002/README.md).
 
 ## Demostración del flujo principal
 

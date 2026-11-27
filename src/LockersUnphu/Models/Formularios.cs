@@ -46,3 +46,18 @@ public sealed class EstudianteForm
     [DataType(DataType.Password), Display(Name = "Contraseña inicial")]
     public string Clave { get; set; } = "";
 }
+
+public sealed class EquipoForm
+{
+    [Required(ErrorMessage = "Escribe el nombre de usuario.")]
+    [RegularExpression(@"[A-Za-z0-9._-]{1,64}", ErrorMessage = "Usa hasta 64 letras, números, puntos, guiones o guiones bajos.")]
+    public string Usuario { get; set; } = "";
+
+    [Required(ErrorMessage = "Escribe una contraseña inicial.")]
+    [StringLength(128, MinimumLength = 12, ErrorMessage = "Usa entre 12 y 128 caracteres.")]
+    [DataType(DataType.Password), Display(Name = "Contraseña inicial")]
+    public string Clave { get; set; } = "";
+
+    [Display(Name = "Rol")]
+    public string Rol { get; set; } = "";
+}

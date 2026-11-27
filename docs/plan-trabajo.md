@@ -26,6 +26,17 @@ Este repositorio se creó de nuevo el 25 de noviembre. Los cambios actuales regi
 
 La evaluación formal de utilidad con usuarios sigue pendiente para el cierre académico. El equipo debe registrar los resultados reales cuando se realice.
 
+## Avance comprobado del viernes 27
+
+- PF-002 se integró mediante el PR 7: rechazo real de una segunda entrega de un locker ocupado, con capturas y comparación SQL.
+- Se incorporó la interfaz Equipo desde la beta previa, su navegación administrativa y una prueba integral adicional de permisos, roles y revocación de sesiones.
+- La suite actual tiene cinco pruebas, todas ejecutadas contra LocalDB sin fallos ni omisiones en la comprobación del viernes.
+- Se revisaron el listado y el alta de Equipo en escritorio y en un ancho móvil de 390 px. El listado conserva desplazamiento horizontal dentro de la tabla.
+- Se ampliaron las instrucciones de clonación, SDK y ejecución desde CMD para evitar confundirlas con PowerShell.
+- La prueba en otra computadora se pospuso por indicación del equipo. No está completada. La evaluación formal con usuarios y la publicación de un tag también siguen pendientes.
+
+La evidencia y el alcance exacto de esta comprobación se registran en [verificación del viernes 27](verificacion-viernes27.md). Los commits conservan sus fechas reales; las revisiones realizadas por automatización se identifican como tales en los PR.
+
 ## Revisión e integración
 
 1. El responsable trabaja en una rama por tarea y registra commits al completar cambios comprobables.
