@@ -1,0 +1,31 @@
+@model EquipoForm
+@{
+    ViewData["Title"] = "Nueva cuenta del equipo";
+}
+<header class="encabezado">
+    <a asp-action="Index">Volver a Equipo</a>
+    <h1>Nueva cuenta del equipo</h1>
+</header>
+<form asp-action="Nuevo" method="post" class="panel panel-estrecho formulario">
+    <div asp-validation-summary="ModelOnly" class="validation" role="alert"></div>
+    <div>
+        <label asp-for="Usuario"></label>
+        <input asp-for="Usuario" class="form-control" maxlength="64" autocomplete="off" required />
+        <span asp-validation-for="Usuario" class="validation"></span>
+    </div>
+    <div>
+        <label asp-for="Rol"></label>
+        <select asp-for="Rol" class="form-select">
+            <option value="@Roles.PersonalBiblioteca">Personal de biblioteca</option>
+            <option value="@Roles.Administrador">Administrador</option>
+        </select>
+        <span asp-validation-for="Rol" class="validation"></span>
+    </div>
+    <div>
+        <label asp-for="Clave"></label>
+        <input asp-for="Clave" class="form-control" autocomplete="new-password" minlength="12" maxlength="128" aria-describedby="reglas-clave" required />
+        <span asp-validation-for="Clave" class="validation"></span>
+        <partial name="_ReglasClave" />
+    </div>
+    <button type="submit" class="btn btn-primary">Guardar cuenta</button>
+</form>

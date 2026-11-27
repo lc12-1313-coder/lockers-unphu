@@ -2,6 +2,8 @@ using LockersUnphu.Domain;
 
 namespace LockersUnphu.Models;
 
+public sealed record CuentaFila(string Id, string Usuario, string Rol);
+
 public sealed record LockerFila(int Id, int Numero, EstadoLocker Estado, string? Version = null);
 
 public sealed record PrestamoFila(int Id, int Locker, string Matricula, string Estudiante, DateTimeOffset Inicio, DateTimeOffset? Fin);

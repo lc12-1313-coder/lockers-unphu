@@ -1,0 +1,42 @@
+@model IReadOnlyList<CuentaFila>
+@{
+    ViewData["Title"] = "Equipo";
+    var cuentaActual = (string?)ViewData["CuentaActual"];
+}
+<header class="encabezado encabezado-accion">
+    <div>
+        <h1>Equipo</h1>
+        <p class="secundario">Administra las cuentas y los permisos del personal.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="Nuevo">Crear cuenta</a>
+</header>
+<div class="tabla-marco" tabindex="0" role="region" aria-label="Cuentas del equipo">
+    <table class="table">
+        <thead><tr><th scope="col">Usuario</th><th scope="col">Rol actual</th><th scope="col">Permisos</th></tr></thead>
+        <tbody>
+            @foreach (var cuenta in Model)
+            {
+                <tr>
+                    <th scope="row">@cuenta.Usuario</th>
+                    <td>@Roles.Nombre(cuenta.Rol)</td>
+                    <td>
+                        @if (cuenta.Id == cuentaActual)
+                        {
+                            <span class="secundario">Tu cuenta</span>
+                        }
+                        else
+                        {
+                            <form asp-action="Rol" asp-route-id="@cuenta.Id" method="post" class="rol-form">
+                                <select name="rol" class="form-select" aria-label="Nuevo rol para @cuenta.Usuario">
+                                    <option value="@Roles.PersonalBiblioteca" selected="@(cuenta.Rol == Roles.PersonalBiblioteca)">Personal de biblioteca</option>
+                                    <option value="@Roles.Administrador" selected="@(cuenta.Rol == Roles.Administrador)">Administrador</option>
+                                </select>
+                                <button type="submit" class="btn btn-outline-primary btn-sm">Guardar</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
