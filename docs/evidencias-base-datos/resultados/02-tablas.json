@@ -1,0 +1,46 @@
+[
+  {
+    "Esquema": "dbo",
+    "Tabla": "__EFMigrationsHistory"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "Asignaciones"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "AspNetRoleClaims"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "AspNetRoles"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "AspNetUserClaims"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "AspNetUserLogins"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "AspNetUserRoles"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "AspNetUsers"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "AspNetUserTokens"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "Estudiantes"
+  },
+  {
+    "Esquema": "dbo",
+    "Tabla": "Lockers"
+  }
+]

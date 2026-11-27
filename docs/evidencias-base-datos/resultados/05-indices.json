@@ -1,0 +1,66 @@
+[
+  {
+    "Tabla": "Asignaciones",
+    "Indice": "IX_Asignaciones_EstudianteId",
+    "EsUnico": true,
+    "TieneFiltro": true,
+    "Filtro": "([FechaHoraFin] IS NULL)",
+    "Columnas": "EstudianteId"
+  },
+  {
+    "Tabla": "Asignaciones",
+    "Indice": "IX_Asignaciones_LockerId",
+    "EsUnico": true,
+    "TieneFiltro": true,
+    "Filtro": "([FechaHoraFin] IS NULL)",
+    "Columnas": "LockerId"
+  },
+  {
+    "Tabla": "Asignaciones",
+    "Indice": "PK_Asignaciones",
+    "EsUnico": true,
+    "TieneFiltro": false,
+    "Filtro": null,
+    "Columnas": "Id"
+  },
+  {
+    "Tabla": "Estudiantes",
+    "Indice": "IX_Estudiantes_ApplicationUserId",
+    "EsUnico": true,
+    "TieneFiltro": false,
+    "Filtro": null,
+    "Columnas": "ApplicationUserId"
+  },
+  {
+    "Tabla": "Estudiantes",
+    "Indice": "IX_Estudiantes_Matricula",
+    "EsUnico": true,
+    "TieneFiltro": false,
+    "Filtro": null,
+    "Columnas": "Matricula"
+  },
+  {
+    "Tabla": "Estudiantes",
+    "Indice": "PK_Estudiantes",
+    "EsUnico": true,
+    "TieneFiltro": false,
+    "Filtro": null,
+    "Columnas": "Id"
+  },
+  {
+    "Tabla": "Lockers",
+    "Indice": "IX_Lockers_Numero",
+    "EsUnico": true,
+    "TieneFiltro": false,
+    "Filtro": null,
+    "Columnas": "Numero"
+  },
+  {
+    "Tabla": "Lockers",
+    "Indice": "PK_Lockers",
+    "EsUnico": true,
+    "TieneFiltro": false,
+    "Filtro": null,
+    "Columnas": "Id"
+  }
+]

@@ -108,3 +108,8 @@ Sin esa variable la prueba SQL se omite. El repositorio contiene cuatro pruebas 
 - [ADR 0001](docs/adr/0001-arquitectura.md) registra las decisiones de la beta.
 
 Crear una rama por tarea desde main y registrar cambios comprobables en commits descriptivos. Cada PR explica su procedencia, alcance, verificación y limitaciones. Otro integrante revisa el cambio antes de integrarlo. Cada integrante revisa el trabajo registrado con su identidad y usa un correo asociado a su cuenta.
+
+
+## Evidencias de la base de datos
+
+La revisión de solo lectura, las consultas, los resultados SQL y las instrucciones de captura para la sección 6.4 están en [evidencias de base de datos](docs/evidencias-base-datos/README.md). El informe distingue la conexión predeterminada de la base de demostración utilizada en la comprobación.

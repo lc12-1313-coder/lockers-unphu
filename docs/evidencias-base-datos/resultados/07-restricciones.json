@@ -1,0 +1,50 @@
+[
+  {
+    "Tipo": "CHECK",
+    "Tabla": "Asignaciones",
+    "Restriccion": "CK_Asignaciones_Fechas",
+    "Definicion": "([FechaHoraFin]>=[FechaHoraInicio])",
+    "Deshabilitada": false,
+    "NoConfiable": false
+  },
+  {
+    "Tipo": "FOREIGN KEY",
+    "Tabla": "Asignaciones",
+    "Restriccion": "FK_Asignaciones_Estudiantes_EstudianteId",
+    "Definicion": "EstudianteId -> Estudiantes.Id",
+    "Deshabilitada": false,
+    "NoConfiable": false
+  },
+  {
+    "Tipo": "FOREIGN KEY",
+    "Tabla": "Asignaciones",
+    "Restriccion": "FK_Asignaciones_Lockers_LockerId",
+    "Definicion": "LockerId -> Lockers.Id",
+    "Deshabilitada": false,
+    "NoConfiable": false
+  },
+  {
+    "Tipo": "FOREIGN KEY",
+    "Tabla": "Estudiantes",
+    "Restriccion": "FK_Estudiantes_AspNetUsers_ApplicationUserId",
+    "Definicion": "ApplicationUserId -> AspNetUsers.Id",
+    "Deshabilitada": false,
+    "NoConfiable": false
+  },
+  {
+    "Tipo": "CHECK",
+    "Tabla": "Lockers",
+    "Restriccion": "CK_Lockers_Estado",
+    "Definicion": "([Estado]=(2) OR [Estado]=(1) OR [Estado]=(0))",
+    "Deshabilitada": false,
+    "NoConfiable": false
+  },
+  {
+    "Tipo": "CHECK",
+    "Tabla": "Lockers",
+    "Restriccion": "CK_Lockers_Numero",
+    "Definicion": "([Numero]>=(1) AND [Numero]<=(999))",
+    "Deshabilitada": false,
+    "NoConfiable": false
+  }
+]

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Evidencias de base de datos · Lockers UNPHU</title>
+<style>
+:root { color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: #f3f5f0; color: #182a20; font: 16px/1.45 system-ui, sans-serif; }
+nav { background: #173b2b; padding: 14px 24px; display: flex; gap: 24px; flex-wrap: wrap; }
+nav a { color: white; text-underline-offset: 4px; }
+main { max-width: 1160px; margin: auto; padding: 24px; }
+section { background: white; border: 1px solid #cad4c8; padding: 26px; margin-bottom: 28px; scroll-margin-top: 16px; }
+h1 { font-size: 28px; line-height: 1.15; margin: 0 0 10px; }
+h2 { font-size: 20px; margin: 20px 0 10px; }
+p { margin: 8px 0 16px; max-width: 92ch; }
+table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 14px; }
+th, td { border: 1px solid #cad4c8; padding: 7px 10px; text-align: left; vertical-align: top; overflow-wrap: anywhere; }
+th { background: #eaf0e5; font-weight: 650; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.note { font-size: 13px; color: #46584a; }
+code { font: 13px/1.5 ui-monospace, Consolas, monospace; overflow-wrap: anywhere; }
+a { color: #245c3a; }
+@media (max-width: 760px) { .grid { display: block; } main { padding: 12px; } section { padding: 16px; } }
+@media print { nav { display: none; } body { background: white; } main { max-width: none; padding: 0; } section { break-after: page; border: 0; padding: 0; } section:last-child { break-after: auto; } }
+</style>
+</head>
+<body>
+<nav aria-label="Evidencias"><a href="#evidencia-1">Base y tablas</a><a href="#evidencia-2">Asignación y persistencia</a><a href="#evidencia-3">Restricciones</a></nav>
+<main>
+<section id="evidencia-1" aria-labelledby="titulo-1">
+<h1 id="titulo-1">Evidencia 1 · Base de datos, tablas y migración</h1>
+<p>Informe visual generado a partir de resultados reales de consultas a SQL Server.</p>
+<p class="note">Revisión de la aplicación <code>419b03a4c08d210ec8d0e72722fa8a97018efc75</code>. Captura SQL <code>2026-11-27T01:14:50.3333285Z</code>.</p>
+<div class="grid"><div><h2>Conexión comprobada</h2><table><thead><tr><th scope='col'>Propiedad</th><th scope='col'>Resultado</th></tr></thead><tbody><tr><td>Base utilizada en esta comprobación</td><td>LockersInterfazDemo_c8b34ec0</td></tr>
+<tr><td>Instancia</td><td>(localdb)\MSSQLLocalDB</td></tr>
+<tr><td>Edición</td><td>Express Edition (64-bit)</td></tr>
+<tr><td>Versión SQL Server</td><td>15.0.4382.1</td></tr>
+<tr><td>IsLocalDB</td><td>1</td></tr></tbody></table><h2>Migración aplicada</h2><table><thead><tr><th scope='col'>MigrationId</th><th scope='col'>ProductVersion</th></tr></thead><tbody><tr><td>20261116224457_Inicial</td><td>10.0.15</td></tr></tbody></table></div>
+<div><h2>Tablas del catálogo</h2><table><thead><tr><th scope='col'>Esquema</th><th scope='col'>Tabla real</th></tr></thead><tbody><tr><td>dbo</td><td>__EFMigrationsHistory</td></tr>
+<tr><td>dbo</td><td>Asignaciones</td></tr>
+<tr><td>dbo</td><td>AspNetRoleClaims</td></tr>
+<tr><td>dbo</td><td>AspNetRoles</td></tr>
+<tr><td>dbo</td><td>AspNetUserClaims</td></tr>
+<tr><td>dbo</td><td>AspNetUserLogins</td></tr>
+<tr><td>dbo</td><td>AspNetUserRoles</td></tr>
+<tr><td>dbo</td><td>AspNetUsers</td></tr>
+<tr><td>dbo</td><td>AspNetUserTokens</td></tr>
+<tr><td>dbo</td><td>Estudiantes</td></tr>
+<tr><td>dbo</td><td>Lockers</td></tr></tbody></table></div></div>
+<p class="note">La configuración predeterminada apunta a LockersUnphu, que no existía en esta instancia. La ejecución de esta evidencia usó explícitamente la base de demostración indicada. Los resultados están en los archivos 01, 02 y 04 de resultados/.</p>
+</section>
+<section id="evidencia-2" aria-labelledby="titulo-2">
+<h1 id="titulo-2">Evidencia 2 · Asignación ficticia y persistencia</h1>
+<p>Resultado de unir Asignaciones, Estudiantes y Lockers con un filtro por cuentas ficticias del seeder.</p>
+<table><thead><tr><th scope='col'>Campo</th><th scope='col'>Resultado</th></tr></thead><tbody><tr><td>AsignacionId</td><td>1</td></tr>
+<tr><td>EstudianteFicticio</td><td>Estudiante Demo Uno</td></tr>
+<tr><td>MatriculaFicticia</td><td>DEMO-1001</td></tr>
+<tr><td>NumeroLocker</td><td>1</td></tr>
+<tr><td>EstadoLocker</td><td>Disponible</td></tr>
+<tr><td>FechaHoraInicio</td><td>2026-11-26T00:36:28.4671707Z</td></tr>
+<tr><td>FechaHoraFin</td><td>2026-11-26T01:21:28.4671707Z</td></tr>
+<tr><td>DuracionSegundos</td><td>2700</td></tr></tbody></table>
+<h2>Comprobación después de reiniciar la aplicación</h2>
+<p>Se recuperó la misma asignación después de detener e iniciar la beta con la misma conexión. La duración almacenada corresponde a 45 minutos y el locker figura disponible después de la devolución.</p>
+<p>Resultados anteriores y posteriores coincidentes · <strong>Sí</strong>.</p>
+<p class="note">SHA-256 de ambos resultados <code>A8EA8CDCF74844D62D2B46F6C2604CB2EBC843C840B0925B3F38EB510D8E0026</code>.</p>
+<p class="note">Verificación <code>2026-11-27T01:16:42.4571083+00:00</code>. Fuentes guardadas en persistencia-antes.json, persistencia-despues.json y verificacion-persistencia.json. Las fechas terminadas en Z están expresadas en UTC.</p>
+</section>
+<section id="evidencia-3" aria-labelledby="titulo-3">
+<h1 id="titulo-3">Evidencia 3 · Restricciones de integridad</h1>
+<p>Índices únicos consultados en sys.indexes y sys.index_columns.</p>
+<table><thead><tr><th scope='col'>Tabla</th><th scope='col'>Índice único</th><th scope='col'>Columna</th><th scope='col'>Filtro</th></tr></thead><tbody><tr><td>Asignaciones</td><td>IX_Asignaciones_EstudianteId</td><td>EstudianteId</td><td>([FechaHoraFin] IS NULL)</td></tr>
+<tr><td>Asignaciones</td><td>IX_Asignaciones_LockerId</td><td>LockerId</td><td>([FechaHoraFin] IS NULL)</td></tr>
+<tr><td>Estudiantes</td><td>IX_Estudiantes_Matricula</td><td>Matricula</td><td>Sin filtro</td></tr></tbody></table>
+<h2>Disponibilidad y concurrencia</h2>
+<p>El servicio Prestamos.EntregarAsync exige EstadoLocker.Disponible antes de crear una asignación. La columna Version, de 8 bytes, usa rowversion para detectar cambios simultáneos.</p>
+<p>La regla sobre lockers ocupados o fuera de servicio se verifica en el backend. El CHECK del campo Estado valida los valores 0, 1 y 2.</p>
+<p class="note">Los archivos 05-indices.json, 06-columnas.json y 07-restricciones.json conservan los metadatos. Una inserción directa en SQL puede omitir la regla de disponibilidad del backend.</p>
+</section>
+<p class="note">Documentación completa y consultas reproducibles en el README de esta carpeta. Estos paneles son una presentación de resultados capturados, identificada con la revisión y las fuentes correspondientes.</p>
+</main>
+</body>
+</html>
